@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <span class="navbar-brand mb-0 h1">AI Generated Quotes</span>
+    </nav>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="cloud"></div>
+                    <div class="card-body">
+                        <h5 class="card-title">Quote</h5>
+                        <p class="card-text" id="quote">Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+       
+    <script src="main.js">
+        async function fetchCategories() {
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/'; // CORS proxy service
+    const apiUrl = 'https://api.api-ninjas.com/v1/categories';
+    
+    try {
+        const response = await fetch(proxyUrl + apiUrl);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch categories: ${response.status} ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+
+    </script>
+</body>
+</html>
